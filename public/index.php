@@ -16,7 +16,7 @@ $app->get('/', function ($request, $response) {
 });
 
 $app->get('/users', function ($request, $response) {
-    return $response->write('GET /users');
+    return $response->withStatus(302);
 });
 
 $app->run();
