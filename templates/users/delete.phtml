@@ -1,0 +1,8 @@
+<h2>Delete user <?= htmlspecialchars($user['nickname']) ?> ?</h2>
+<hr>
+<form action="/users/<?= htmlspecialchars($user['id']) ?>" method="post">
+    <input type="hidden" name="_METHOD" value="DELETE">
+
+    <button type="submit">Yes</button>
+    <button type="button"><a href="/users">No</a></button>
+</form>

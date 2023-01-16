@@ -1,0 +1,45 @@
+<?php if (!empty($flash)): ?>
+    <?php foreach ($flash as $messages): ?>
+        <?php foreach ($messages as $message): ?>
+            <p style="color: green;"><?= print_r($message, true) ?></p>
+        <?php endforeach; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+<?php if (empty($isAuthenticated)): ?>
+    <main>
+        <header><h1>Login</h1></header>
+
+        <form action="/login" method="post">
+            <input type="text" name="nickname" value="" required>
+            <button type="submit">login</button>
+        </form>
+    </main>
+<?php else: ?>
+    <main>
+        <header><h1>Users</h1></header>
+        <hr>
+
+        <form action="/logout" method="post">
+            <input type="hidden" name="_METHOD" value="DELETE">
+            <button type="submit">Logout</button>
+        </form>
+
+        <form action="/users" method="get">
+            <input type="search" name="term" value="<?= htmlspecialchars($term) ?>">
+
+            <button type="submit">Search</button>
+        </form>
+
+        <hr>
+        <ul>
+            <?php foreach ($users as $user): ?>
+                <li>
+                    Id: <?= htmlspecialchars($user['id']) ?>, Nickname: <?= htmlspecialchars($user['nickname']) ?>
+                    <a href="/users/<?= htmlspecialchars($user['id']) ?>/edit">edit</a>
+                    <a href="/users/<?= htmlspecialchars($user['id']) ?>/delete">delete</a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+    </main>
+<?php endif; ?>
