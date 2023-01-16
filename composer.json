@@ -12,5 +12,8 @@
         "psr-4": {
             "App\\": "src"
         }
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "^227.0"
     }
 }
