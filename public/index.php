@@ -1,6 +1,7 @@
 <?php
 
-// Подключение автозагрузки через composer
+declare(strict_types=1);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\ArrayUserRepository;
@@ -45,7 +46,7 @@ $app->add(MethodOverrideMiddleware::class);
 $router = $app->getRouteCollector()->getRouteParser();
 
 $app->get('/', function ($request, $response) {
-    return $response->write('Welcome to Slim!');
+    return $this->get('renderer')->render($response, 'index.phtml');
 })->setName('home');
 
 $app->post('/login', function ($request, $response) use ($router) {
